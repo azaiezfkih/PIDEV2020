@@ -1,0 +1,36 @@
+
+<form method="post">
+    {{ form_start(form) }}
+    {{  form_widget(form) }}
+    {{ form_end(form) }}
+    <table border="1">
+        <tbody id="myTable">
+        {% for f in formations %}
+            <tr>
+                <td>
+                    {{ f.id }}
+                </td>
+                <td>
+                    {{ f.nomEvent }}
+                </td>
+
+                <td>
+                    {{ f.date|date("m/d/Y") }}
+                </td>
+
+                <td>
+                    {{ f.theme }}
+                </td>
+
+                <td>
+                    {{ f.addresse }}
+                </td>
+                <td>
+                    {{ f.nbrParticipant }}
+                </td>
+                <td><a href="{{ path('supprimer_evenement_homepage', {'id': f.id}) }}">supprimer</a> </td>
+                <td><a href="{{ path('modifier_evenement_homepage', {'id': f.id}) }}">modifier</a> </td>
+            </tr>
+        {% endfor %}
+    </table>
+</form>

@@ -1,0 +1,42 @@
+<h1>Liste des auditions</h1>
+
+<table border ="4">
+
+    <tr>
+        <td>
+            Id
+        </td>
+        <td>
+            Nom
+        </td>
+        <td>
+            Responsable
+        </td>
+        <td>
+            Supprimer
+        </td>
+        <td>
+            Modifier
+        </td>
+    </tr>
+
+    {% for categorie in categories %}
+        <tr>
+            <td>
+                {{ categorie.id }}
+            </td>
+            <td>
+                {{ categorie.nom }}
+            </td>
+            <td>
+                {{ categorie.respensable }}
+            </td>
+            <td>
+                <a href="{{ path("categorie_deletepage",{'id':categorie.id}) }}">Supprimer</a>
+            </td>
+            <td>
+                <a href="{{ path("categorie_modifypage",{'id':categorie.id}) }}">Modifier</a>
+            </td>
+        </tr>
+    {% endfor %}
+</table>

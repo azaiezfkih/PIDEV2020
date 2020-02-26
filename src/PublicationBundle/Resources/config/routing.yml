@@ -1,0 +1,68 @@
+publication_homepage:
+    path:     /
+    defaults: { _controller: PublicationBundle:Default:index }
+
+publication:
+    path:     /publication
+    defaults: { _controller: PublicationBundle:Publication:ListePublication }
+
+
+ajouter_publication:
+    path:     /ajouter_publication
+    defaults: { _controller: PublicationBundle:Publication:ajouter }
+
+modifier_publication:
+    path:     /modifier_publication/{id}
+    defaults: { _controller: PublicationBundle:Publication:UpdatePublication }
+
+supprimer_publication:
+    path:     /supprimer_publication/{id}
+    defaults: { _controller: PublicationBundle:Publication:supprimerpublication }
+
+delete_publication:
+    path:     /delete_publication/{id}
+    defaults: { _controller: PublicationBundle:Publication:DeletePublication }
+
+ajouter_commentaire:
+    path:     /ajouter_commentaire/{id}
+    defaults: { _controller: PublicationBundle:Commentaire:ajoutercommantaire }
+
+modifier_commentaire:
+    path:     /modifier_commentaire/{id}
+    defaults: { _controller: PublicationBundle:Commentaire:ModifierCommentaire }
+
+supprimer_commentaire:
+    path:     /supprimer_commentaire/{id}
+    defaults: { _controller: PublicationBundle:Commentaire:SupprimeCommentaire }
+
+delete_commentaire:
+    path:     /delete_commentaire/{id}
+    defaults: { _controller: PublicationBundle:Commentaire:DeleteCommentaire }
+
+liste_commentaire:
+    path:     /liste_commentaire/{id}
+    defaults: { _controller: PublicationBundle:Commentaire:ListeCommentaire    }
+
+
+recherche_commentaire:
+    path:     /recherche_commentaire
+    defaults: { _controller: PublicationBundle:Publication:Recherche }
+
+
+like:
+    path:     /like/{id}
+    defaults: { _controller: PublicationBundle:Publication:VoteLike }
+
+dislike:
+    path:     /dislike/{id}
+    defaults: { _controller: PublicationBundle:Publication:VoteDisike }
+
+
+
+
+afficher_publication:
+    path:     /afficher_publication
+    defaults: { _controller: PublicationBundle:Publication:AfficherPublication }
+
+
+

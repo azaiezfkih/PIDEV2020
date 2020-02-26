@@ -1,0 +1,11 @@
+user_homepage:
+    path:     /
+    defaults: { _controller: UserBundle:Default:index }
+
+add:
+    path:     /home
+    defaults: { _controller: UserBundle:Security:redirect }
+
+redirect:
+    path:     /admin/home
+    defaults: { _controller: UserBundle:Security:redirect }

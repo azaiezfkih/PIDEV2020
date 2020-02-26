@@ -1,0 +1,177 @@
+{% extends 'base.html.twig' %}
+{% block rafaa %}
+    <!-- conversation -->
+
+    <link rel="stylesheet" href="{{ asset('conversation/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('conversation/css/style.css') }}">
+    <!-- Responsive stylesheet -->
+    <link rel="stylesheet" href="{{ asset('conversation/css/responsive.css') }}">
+    <!-- Favicon -->
+    <link href="{{ asset('conversation/images/favicon.ico') }}" sizes="128x128" rel="shortcut icon"
+          type="image/x-icon"/>
+    <link href="{{ asset('conversation/images/favicon.ico') }}" sizes="128x128" rel="shortcut icon"/>
+{% endblock %}
+
+
+{% block Body %}
+    <section class="breadcumb-area bg-img bg-overlay"
+             style="background-image: url({{ asset('img/bg-img/breadcumb3.jpg') }});">
+    </section>
+    <body>
+    <div class="col-lg-8 col-xl-9">
+        <div class="row message_container">
+            <div class="col-sm-12 col-md-6 col-lg-5 col-xl-4 pr0 pl0">
+                <div class="inbox_user_list">
+                    <div class="iu_heading">
+                        <div class="candidate_revew_search_box">
+                            <form class="form-inline my-2 my-lg-0">
+                                <input class="form-control mr-sm-2" id="search" type="search" placeholder="Serach"
+                                       aria-label="Search">
+                                <button class="btn my-2 my-sm-0" type="submit"><span class="flaticon-search"></span>
+                                </button>
+                              <button>  <a class="badge-btn" type="submit" href="{{ path('conversation_new', {'id': conversation.id}) }}">Ajouter une
+                                    Conversation </a></button><br>
+                                ||||
+                               <button> <a class="badge-btn"  type="submit" href="{{ path('conversation_index', {'id': conversation.id}) }}">list
+                                    Conversations </a></button>
+                            </form>
+                        </div>
+                    </div>
+                    <table id="tableac">
+                        <td>
+                    <ul >
+                        {% for conversation in conversationsUser %}
+                            <li class="contact">
+                                <a href="#">
+                                    <a class="wrap" href="{{ path('conversation_chat', {'id': conversation.id}) }}">
+                                        <span class="contact-status online"></span>
+                                        <img class="img-fluid" src="{{ asset('conversation/images/IMG_20200128_200607.jpg ') }}" alt="s1.jpg"/>
+                                        <div class="meta">
+                                            <h5 class="name">{{ conversation.nom }}</h5>
+                                            <p class="preview">{{ conversation.dateCreation|date('d-m-Y') }}</p>
+                                        </div>
+                                    </a>
+                                </a></li>
+                        {% endfor %}
+                    </ul>
+                        </td>
+                    </table>
+                    <div class="row justify-content-center" style="background-color: #00ff80">{{ knp_pagination_render(conversationsUser) }}</div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-7 col-xl-8 pr0 pl0">
+                <div class="user_heading">
+                    <a href="#">
+                        <div class="wrap">
+                            <span class="contact-status online"></span>
+                            <div class="meta">
+                                <h2 class="name">{{ conversation.nom }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="last_seen_time text-center">
+                    <a href="#">{{ conversation.dateCreation | date('Y-m-d') }}</a>
+                </div>
+                <div class="inbox_chatting_box">
+                    <ul class="chatting_content">
+                        {% for message in conversation.messages %}
+                            {% if message.user.id != currentUser.id %}
+                                <li class="media sent" >
+                                    <span class="contact-status busy"></span>
+                                    <img class="img-fluid" src="{{ asset('conversation/images/IMG_20200128_200607.jpg ') }}" alt="s1.jpg"/>
+                                    <div class="media-body">
+                                        <div class="date_time">{{ conversation.dateCreation| date('Y-m-d') }}</div>
+                                        <p>{{ message.message }}</p>
+                                    </div>
+                                </li>
+                            {% else %}
+                                <li class="media reply">
+                                    <div class="media-body text-right">
+                                        <div class="date_time">{{ conversation.dateCreation| date('Y-m-d') }}</div>
+                                        <p>{{ message.message }}</p>
+                                    </div>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="message_input">
+                    <form class="form-inline" action="{{ path('conversation_chat_send', {'id': conversation.id}) }}" method="post">
+                        <input class="form-control" type="search" name="message" placeholder="Enter message here..." aria-label="Search">
+                        <button class="btn" type="submit">Send <span class="flaticon-paper-plane"></span></button>
+                    </form>
+                    <form>                        <input type="file" id="message_imageFile" name="message[imageFile]">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrapper End -->
+    <script src="{{ asset('conversation/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/jquery-3.3.1.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/jquery-migrate-3.0.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/jquery.mmenu.all.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/ace-responsive-menu.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/bootstrap-select.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/snackbar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/simplebar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/parallax.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/scrollto.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/jquery-scrolltofixed-min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/jquery.counterup.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/wow.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/progressbar.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/slider.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/timepicker.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('conversation/js/wow.min.js') }}"></script>
+    <!-- Custom script for all pages -->
+    <script type="text/javascript" src="{{ asset('conversation/js/script.js') }}"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#search').keyup(function(){
+
+                console.log('search => ',$(this).val());
+
+                search_table($(this).val());
+            });
+            function search_table(value){
+                $('#tableac').each(function(){
+                    var found = 'true';
+                    var _ul =  $(this).find('ul > li');
+                    _ul.each(function () {
+                        var _find = false;
+                        var _currentelement = $(this);
+                        var _nom = $(_currentelement).find('h5.name');
+                        var _date = $(_currentelement).find('p.preview');
+                        if(typeof  _nom !== "undefined" ){
+                            console.log("nom => ",_nom.text());
+                        }
+                        if(typeof  _date !== "undefined" ){
+                            console.log("date => ",_date.text());
+                        }
+
+                        if(_nom.text().toLowerCase().indexOf(value.toLowerCase())>=0 || _date.text().toLowerCase().indexOf(value.toLowerCase())>=0)
+                        {
+                            console.log("====> ",$(this));
+                            $(this).show();
+                        }
+                        else{
+                            console.log("no ====> ",$(this));
+                            $(this).hide();
+                        }
+
+                    })
+
+                });
+            }
+        });
+    </script>
+
+    </body>
+
+{% endblock %}

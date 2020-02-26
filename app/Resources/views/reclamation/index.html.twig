@@ -1,0 +1,112 @@
+{% extends 'default/index.html.twig' %}
+
+{% block content %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script type="text/javascript">
+        $("body").on("click", "#btnExport", function () {
+            html2canvas($('#tblCustomers')[0], {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("Table.pdf");
+                }
+            });
+        });
+    </script>
+<div class="content-wrapper">
+
+<section class="content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h1>Les reclamations</h1>
+                    <input type="button" id="btnExport" value="Export" />
+                    <div class="card-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body" >
+                    <table id="tblCustomers" class="table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            {#<th>Id</th>#}
+                            <th>Date</th>
+                            <th>Objet</th>
+                            <th>Description</th>
+                            <th>Etat</th>
+                            <th>User </th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="myTable">
+                        {% for reclamation in reclamations %}
+                            <tr>
+                           {#    <td><a href="{{ path('reclamation_show', { 'id': reclamation.id }) }}">{{ reclamation.id }}</a></td>#}
+                                <td>{% if reclamation.date %}{{ reclamation.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td>{{ reclamation.objet }}</td>
+                                <td>{{ reclamation.description }}</td>
+                                <td> <a href="{{ path('reclamation_up',{'id':reclamation.id}) }}" >  {{ reclamation.etat }}</a></td>
+                                <td>{{ reclamation.idUser }}</td>
+                                <td>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ path('reclamation_show', { 'id': reclamation.id }) }}">show</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('reclamation_edit', { 'id': reclamation.id }) }}">edit</a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ path('reclamation_delete',{ 'id' : reclamation.id}) }}">delete</a>
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+    </div>
+    </section>
+</div>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+{% endblock %}

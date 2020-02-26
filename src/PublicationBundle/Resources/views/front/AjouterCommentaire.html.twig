@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block Body %}
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/breadcumb3.jpg') }});">
+
+    </section>
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+                        {{ form_start(form) }}
+
+                        {{ form_row(form.contenue) }}
+                        <div style="align-self: center" class="form-group">
+                            <input type="submit" class="btn btn-primary" id="submit" value="ajouter commentaire">
+                        </div>
+                        {{ form_end(form) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

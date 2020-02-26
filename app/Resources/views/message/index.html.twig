@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% block Body %}
+
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/breadcumb3.jpg') }});">
+
+</section>
+<section class="login-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="login-content">
+                    <h3>Welcome</h3>
+                    <!-- Login Form -->
+                    <div class="login-form">
+    <h1>Messages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idm</th>
+                <th>Idsender</th>
+                <th>Idreciver</th>
+                <th>Message</th>
+                <th>Visible</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for message in messages %}
+            <tr>
+                <td><a href="{{ path('message_show', { 'idM': message.idM }) }}">{{ message.idM }}</a></td>
+                <td>{{ message.idSender }}</td>
+                <td>{{ message.idReciver }}</td>
+                <td>{{ message.message }}</td>
+                <td>{% if message.visible %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('message_show', { 'idM': message.idM }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('message_edit', { 'idM': message.idM }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('message_new') }}">Create a new message</a>
+        </li>
+    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'default/index.html.twig' %}
+
+{% block content %}
+<div class="content-wrapper">
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-6">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h1>Produit creation</h1>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+                        <!-- Login Form -->
+                        {{ form_start(form) }}
+                        <div class="card-body">
+                            <div class="form-group">
+                                {{ form_label(form.nom,'Nom Produit') }}
+                                {{ form_widget(form.nom,{'attr':{'class':'form-control'}} ) }}
+                            </div>
+                                <div class="form-group">
+                                {{ form_label(form.prix,'Prix produit') }}
+                                {{ form_widget(form.prix,{'attr':{'class':'form-control'}} ) }}
+                                </div>
+                                    <div class="form-group">
+                                {{ form_label(form.quantite,'Quantite') }}
+                                {{ form_widget(form.quantite,{'attr':{'class':'form-control'}} ) }}
+                                    </div>
+                                        <div class="form-group">
+                                {{ form_label(form.description,'Descrption') }}
+                                {{ form_widget(form.description,{'attr':{'class':'form-control'}} ) }}
+                                        </div>
+                                            <div class="form-group">
+                                {{ form_label(form.categorie,'Categorie') }}
+                                {{ form_widget(form.categorie,{'attr':{'class':'form-control'}} ) }}
+                                            </div>
+                                                <div class="form-group">
+                                {{ form_label(form.image,'Image') }}
+                                {{ form_widget(form.image) }}
+                                                </div>
+                                <div class="card-footer">
+                            <input class="btn btn-primary" type="submit" value="Create" />
+                            {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+
+                            <ul>
+                                <li>
+                                    <a href="{{ path('produit_index') }}">Back to the list</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+

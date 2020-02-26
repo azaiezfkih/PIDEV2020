@@ -1,0 +1,37 @@
+audition_homepage:
+    path:     /hh
+    defaults: { _controller: AuditionBundle:Default:index }
+audition_addpage:
+    path:     /ajoutAudition
+    defaults: { _controller: AuditionBundle:Audition:ajouterAudition }
+audition_showpage:
+    path:     /listAudition
+    defaults: { _controller: AuditionBundle:Audition:listerAudition }
+audition_showwpage:
+    path:     /showAudition
+    defaults: { _controller: AuditionBundle:Audition:showAudition }
+audition_deletepage:
+    path:     /delete/{id}
+    defaults: { _controller: AuditionBundle:Audition:supprimerAudition }
+audition_modifypage:
+    path:     /modify/{id}
+    defaults: { _controller: AuditionBundle:Audition:modifierAudition }
+
+categorie_addpage:
+    path:     /ajoutCategorie
+    defaults: { _controller: AuditionBundle:Categorie:ajouterCategorie }
+categorie_showpage:
+    path:     /listCategorie
+    defaults: { _controller: AuditionBundle:Categorie:listerCategorie }
+categorie_deletepage:
+    path:     /deletec/{id}
+    defaults: { _controller: AuditionBundle:Categorie:supprimerCategorie }
+categorie_modifypage:
+    path:     /modifyc/{id}
+    defaults: { _controller: AuditionBundle:Categorie:modifierCategorie }
+
+test:
+    path: /test
+    defaults: { _controller: AuditionBundle:Audition:stat }
+
+

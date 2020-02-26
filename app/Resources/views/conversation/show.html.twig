@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+{% block Body %}
+
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/breadcumb3.jpg') }});">
+
+</section>
+<section class="login-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="login-content">
+
+                    <!-- Login Form -->
+                    <div class="login-form" style="align-items: center">
+    <h1>Conversation</h1>
+
+    <table border="2" style="margin: auto">
+        <tbody>
+        <tr>
+            <ul>
+                <li>
+                    <a href="{{ path('conversation_chat', {'id': conversation.id}) }}"> << Retour a conversation</a>
+                </li>
+            </ul>
+        </tr>
+
+            <tr>
+                <th>Id</th>
+                <td>{{ conversation.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ conversation.nom }}</td>
+            </tr>
+            <tr>
+                <th>Datecreation</th>
+                <td>{% if conversation.dateCreation %}{{ conversation.dateCreation|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('conversation_index') }}">Go to the list >> </a>
+        </li>
+        <li>
+            <a href="{{ path('conversation_edit', { 'id': conversation.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

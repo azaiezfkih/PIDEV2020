@@ -1,0 +1,9 @@
+shop_produit:
+    resource: "@ShopBundle/Resources/config/routing/produit.yml"
+    prefix:   /produitF
+
+test:
+    path: /test
+    defaults: { _controller: ShopBundle:Produit:test}
+
+

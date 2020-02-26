@@ -1,0 +1,111 @@
+
+{% extends 'base.html.twig' %}
+
+{% block Body %}
+
+
+<head>
+
+
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<html lang="{{ app.request.locale|split('_')[0] }}">
+<section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/breadcumb3.jpg') }});">
+
+</section>
+
+<section class="login-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+                <div class="login-content">
+
+
+
+                    <form method="post">
+
+
+
+                        <table border="1">
+                            <tr>
+                                <th>id</th>
+                                <th>nom</th>
+                                <th>date</th>
+                                <th>debut</th>
+                                <th>fin</th>
+                                <th>theme</th>
+                                <th>adresse</th>
+
+                            </tr>
+
+                            {% for f in formations %}
+
+
+                                <tr>
+                                    <td>
+                                        {{ f.id }}
+                                    </td>
+
+                                    <td>
+                                        {{ f.nomEVENT }}
+                                    </td>
+                                    <td>
+                                        {{ f.date|date("m/d/Y") }}
+                                    </td>
+                                    <td>
+                                        {{ f.dateDebut|date("h:m") }}
+                                    </td>
+                                    <td>
+                                        {{ f.DateFin|date("h:m") }}
+                                    </td>
+                                    <td>
+                                        {{ f.theme }}
+                                    </td>
+
+                                    <td>
+                                        {{ f.addresse }}
+                                    </td>
+
+
+
+                                    <td><a href="{{ path('afficherdetail_homepage', {'idu': app.user.id,'email':app.user.email,'username':app.user.username,'id':f.id}) }}">details</a></td>
+
+
+
+                                </tr>
+
+
+                            {% endfor %}
+                        </table>
+
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}

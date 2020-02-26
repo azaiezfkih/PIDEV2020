@@ -1,0 +1,67 @@
+{% extends 'default/index.html.twig' %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Les reclamations</h3>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <h1>Reclamation</h1>
+                        <table>
+                            <tbody>
+                            <tr>
+                                <th>Id</th>
+                                <td>{{ reclamation.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Date</th>
+                                <td>{% if reclamation.date %}{{ reclamation.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <th>Objet</th>
+                                <td>{{ reclamation.objet }}</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>{{ reclamation.description }}</td>
+                            </tr>
+                            <tr>
+                                <th>Etat</th>
+                                <td>{{ reclamation.etat }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <ul>
+                            <li>
+                                <a href="{{ path('reclamation_index') }}">Back to the list</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('reclamation_edit', { 'id': reclamation.id }) }}">Edit</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('reclamation_delete',{ 'id' : reclamation.id}) }}">delete</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+{% block head %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!-- Title -->
+        <title>One Music - Modern Music HTML5 Template</title>
+
+        <!-- Favicon -->
+        <link rel="icon" href="{{ asset('img/core-img/favicon.ico')}}">
+
+        <!-- Stylesheet -->
+        <link rel="stylesheet" href="{{ asset('style.css')}}">
+
+    </head>
+{% endblock %}
+{% block loader %}
+<body>
+<!-- Preloader -->
+<div class="preloader d-flex align-items-center justify-content-center">
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>
+{% endblock %}
+{% block NavBar %}
+    <!-- ##### Header Area Start ##### -->
+    <header class="header-area">
+        <!-- Navbar Area -->
+        <div class="oneMusic-main-menu">
+            <div class="classy-nav-container breakpoint-off">
+                <div class="container">
+                    <!-- Menu -->
+                    <nav style="align-content: center" class="classy-navbar justify-content-between" id="oneMusicNav">
+
+                        <!-- Nav brand -->
+
+
+                        <!-- Navbar Toggler -->
+                        <div  class="classy-navbar-toggler">
+                            <span class="navbarToggler"><span></span><span></span><span></span></span>
+                        </div>
+
+                        <!-- Menu -->
+                        <div class="classy-menu">
+
+                            <!-- Close Button -->
+                            <div class="classycloseIcon">
+                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                            </div>
+
+                            <!-- Nav Start -->
+                            <div class="classynav">
+                                <ul>
+                                    <li><a href="/home">Home</a></li>
+                                    <li><a href="albums-store.html">Albums</a></li>
+                                    <li><a href="#">Pages</a>
+                                        <ul class="dropdown">
+                                            <li><a href="index.html">Home</a></li>
+                                            <li><a href="albums-store.html">Albums</a></li>
+                                            <li><a href="event.html">Events</a></li>
+                                            <li><a href="blog.html">News</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="elements.html">Elements</a></li>
+                                            <li><a href="login.html">Login</a></li>
+                                            <li><a href="#">Dropdown</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                    <li><a href="#">Even Dropdown</a>
+                                                        <ul class="dropdown">
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                            <li><a href="#">Deeply Dropdown</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li><a href="#">Even Dropdown</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="event.html">Events</a></li>
+                                    <li><a href="blog.html">News</a></li>
+                                    <li><a href="/shop">Shop</a>
+                                        <ul class="dropdown">
+                                            <li><a href="/produitF">Nos produits</a></li>
+                                            <li><a href="/reclamationF">Reclamations</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Publication</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{{ path('publication') }}">liste des publication</a></li>
+
+                                        </ul>
+
+                                </ul>
+
+
+                                <!-- Login/Register & Cart Button -->
+                                <div class="login-register-cart-button d-flex align-items-center">
+                                    <!-- Login/Register -->
+                                    <div class="login-register-btn mr-50">
+                                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                            <div style="color: #9a9fb0">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                                <a href="{{ path('fos_user_security_logout') }}">
+                                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+
+                                                </a>
+                                                {% if is_granted("ROLE_ADMIN") %}
+                                                    <a href="/admin/home">/Dashbord </a>
+                                                {% endif %}
+                                            </div>
+                                        {% else %}
+                                            <a href="/register" id="loginBtn">Register / </a>
+                                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+
+                                        {% endif %}
+
+                                    </div>
+
+                                    <!-- Cart Button -->
+                                    <div class="cart-btn">
+
+                                        <p><span class="icon-shopping-cart"></span> <span class="quantity">1</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Nav End -->
+
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+{% endblock %}
+{% block Body %}
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/breadcumb3.jpg') }}">
+
+    </section>
+    <section class="login-area section-padding-100">
+        <div class="blog-area section-padding-100">
+            <div class="container">
+                <div class="row">
+                    {% for publication in publications %}
+
+                        <div class="col-12 col-lg-9">
+                            <a style="text-align-all: center" class="btn btn-success" href="{{ path('ajouter_commentaire',{'id':publication.id})}}">Ajouter une nouvelle commentaire</a>
+                            <!-- Single Post Start -->
+                            <div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
+
+                                <div class="blog-content">
+
+
+                                    <img src="{{ asset('uploads/photos/'~publication.getPhoto()) }}" width="50" height="50">
+
+                                    <!-- Post Meta -->
+                                    <div class="post-meta d-flex mb-30">
+                                        <p class="post-author">{{ publication.date|date('d-m-Y  ') }}</p>
+                                    </div>
+                                    <!-- Post Excerpt -->
+                                    <p>{{ publication.description }}.</p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    {% for commentaire in commentaires %}
+                        <div class="col-12 col-lg-9">
+
+                            <!-- Single Post Start -->
+                            <div class="single-blog-post mb-100 wow fadeInUp" data-wow-delay="100ms">
+
+                                <div class="blog-content">
+                                    <!-- Post Title -->
+                                    <p class="post-title">Créer par {{ commentaire.idUser }}</p>
+                                    <!-- Post Meta -->
+                                    <div class="post-meta d-flex mb-30">
+                                        <p class="post-author">{{ commentaire.date|date('d-m-Y  ') }}</p>
+                                    </div>
+                                    <!-- Post Excerpt -->
+                                    <p>{{commentaire.contenue }}.</p>
+
+                                    <a class="btn btn-outline-primary" href="{{ path('publication')}}">Retour aux liste des Pubs</a>
+                                    <a class="btn btn-primary" href="{{ path('modifier_commentaire',{'id':commentaire.id})}}">Modifier commentaire</a>
+                                    <a class="btn btn-danger" href="{{ path('supprimer_commentaire',{'id':commentaire.id})}}">Supprimer commentaire</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}
+
+{% block Footer %}
+<!-- ##### Footer Area Start ##### -->
+<footer class="footer-area">
+    <div class="container">
+        <div class="row d-flex flex-wrap align-items-center">
+            <div class="col-12 col-md-6">
+                <a href="#"><img src="{{ asset('img/core-img/logo.png') }}" alt=""></a>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <div class="footer-nav">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Albums</a></li>
+                        <li><a href="#">Events</a></li>
+                        <li><a href="#">News</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ##### Footer Area Start ##### -->
+
+<!-- ##### All Javascript Script ##### -->
+<!-- jQuery-2.2.4 js -->
+<script src="{{ asset('js/jquery/jquery-2.2.4.min.js')}}"></script>
+<!-- Popper js -->
+<script src="{{ asset('js/bootstrap/popper.min.js')}}"></script>
+<!-- Bootstrap js -->
+<script src="{{ asset('js/bootstrap/bootstrap.min.js')}}"></script>
+<!-- All Plugins js -->
+<script src="{{ asset('js/plugins/plugins.js')}}"></script>
+<!-- Active js -->
+<script src="{{ asset('js/active.js')}}"></script>
+</body>
+{% endblock %}
+</html>

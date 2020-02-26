@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block Body %}
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/breadcumb3.jpg') }});">
+
+    </section>
+
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-8">
+                    <div class="login-content">
+
+
+                        <table >
+
+                            <h2>Liste des participation</h2>
+                            <table border="1">
+                                <tr>
+                                    <th>id</th>
+                                    <th>nom de l evenement</th>
+                                    <th>adresse</th>
+                                    <th>date</th>
+                                    <th>userid</th>
+                                    <th>mail</th>
+
+
+
+
+                                </tr>
+
+
+                                {% for f in formations %}
+
+
+                                    {% if app.user.id==f.user_id.id %}
+
+                                        <tr>
+                                            <td>
+                                                {{ f.id }}
+                                            </td>
+
+                                            <td>
+                                                {{ f.evenement_id.nomEvent }}
+                                            </td>
+                                            <td>
+                                                {{ f.evenement_id.addresse }}
+                                            </td>
+                                            <td>
+                                                {{ f.evenement_id.date|date("m/d/y") }}
+                                            </td>
+                                            <td>
+                                                {{ f.user_id }}
+                                            </td>
+                                            <td>
+                                                {{ f.maileParticipant }}
+                                            </td>
+
+                                        </tr>
+
+                                    {% endif %}
+
+
+                                {% endfor %}
+                            </table>
+
+
+
+                        </table>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}

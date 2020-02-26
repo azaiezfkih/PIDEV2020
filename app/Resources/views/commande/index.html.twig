@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block Body %}
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/breadcumb3.jpg') }});"></section>
+    <section class="login-area section-padding-100">
+        <div class="container">
+<table class="table table-head-fixed text-nowrap">
+    <thead>
+    <tr>
+      {#  <th>Id</th>#}
+        <th>Nomprod</th>
+        <th>Qteprod</th>
+        <th>Prixprod</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for commande_detail in commandess %}
+        <tr>
+        {#    <td><a href="{{ path('commande_detail_show', { 'id': commande_detail.id }) }}">{{ commande_detail.id }}</a></td>#}
+            <td>{{ commande_detail.idProd }}</td>
+            <td>{{ commande_detail.qteProd }}</td>
+            <td>{{ commande_detail.prixProd }}dt</td>
+
+            <td>
+
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+        </div>
+    </section>
+{% endblock %}

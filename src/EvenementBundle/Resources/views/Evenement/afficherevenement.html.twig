@@ -1,0 +1,106 @@
+{% extends 'default/index.html.twig' %}
+
+{% block content %}
+    <meta name="viewport" content="width=device-width, initial-scale=1" xmlns="http://www.w3.org/1999/html">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+
+    <div class="content-wrapper">
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Les reclamations</h3>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <a href="{{ path('rechercher_homepage') }}">chercher</a>
+
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search"></br>
+
+
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0" style="height: 300px;">
+                        <table class="table table-head-fixed text-nowrap">
+                            <form method="post">
+
+                                <h2>Liste des evenements</h2>
+                                <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                                <br>
+                                <table border="1">
+                                    <tbody id="myTable">
+                                    <th>id</th>
+                                    <th>nom</th>
+                                    <th>date</th>
+                                    <th>date debut</th>
+                                    <th>date fin</th>
+                                    <th>theme</th>
+                                    <th>adresse</th>
+                                    {% for f in formations %}
+                                        <tr>
+                                            <td>
+                                                {{ f.id }}
+                                            </td>
+                                            <td>
+                                                {{ f.nomEvent }}
+                                            </td>
+
+                                            <td>
+                                                {{ f.date|date("m/d/Y") }}
+                                            </td>
+                                            <td>
+                                                {{ f.dateFin|date("h:m") }}
+                                            </td>
+                                            <td>
+                                                {{ f.dateDebut|date("h:m") }}
+                                            </td>
+
+                                            <td>
+                                                {{ f.theme }}
+                                            </td>
+
+                                            <td>
+                                                {{ f.addresse }}
+                                            </td>
+                                            <td>
+                                                {{ f.nbrParticipant }}
+                                            </td>
+                                            <td><a href="{{ path('supprimer_evenement_homepage', {'id': f.id}) }}">supprimer</a> </br>
+                                            <a href="{{ path('modifier_evenement_homepage', {'id': f.id}) }}">modifier</a> </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </form>
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+            </div>
+        </section>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+{% endblock %}

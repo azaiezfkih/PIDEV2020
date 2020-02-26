@@ -1,0 +1,47 @@
+{% extends 'default/index.html.twig' %}
+
+{% block content %}
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- left column -->
+                    <div class="col-md-6">
+                        <!-- general form elements -->
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h1>Ajouter Catégorie</h1>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <!-- Login Form -->
+                            {{ form_start(form) }}
+                            <div class="card-body">
+                                <div class="form-group">
+                                    {{ form_label(form.nom,'Nom Catégorie') }}
+                                    {{ form_widget(form.nom,{'attr':{'class':'form-control'}} ) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_label(form.respensable,'Responsable') }}
+                                    {{ form_widget(form.respensable,{'attr':{'class':'form-control'}} ) }}
+                                </div>
+                                <div class="card-footer">
+                                    <input class="btn btn-primary" type="submit" value="Create" />
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul>
+                            <li>
+                                <a href="{{ path('categorie_showpage') }}">Back to the list</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    </section>
+    </div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+
+
+
+{% block Body %}
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/breadcumb3.jpg') }});">
+        <div class="bradcumbContent">
+            <p>See what’s new</p>
+            <h2>Latest Products</h2>
+        </div>
+    </section>
+
+    <section class="album-catagory section-padding-100-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="browse-by-catagories catagory-menu d-flex flex-wrap align-items-center mb-70">
+                        <a href="{{ path('produit_index') }}" data-filter="*">Browse All</a>
+                        <a href="{{ path('produit_rech',{'id':'a'}) }}" data-filter=".a" class="active">A</a>
+                        <a href="{{ path('produit_rech',{'id':'b'}) }}" data-filter=".b">B</a>
+                        <a href="{{ path('produit_rech',{'id':'c'}) }}" data-filter=".c">C</a>
+                        <a href="{{ path('produit_rech',{'id':'d'}) }}" data-filter=".d">D</a>
+                        <a href="{{ path('produit_rech',{'id':'e'}) }}" data-filter=".e">E</a>
+                        <a href="{{ path('produit_rech',{'id':'f'}) }}" data-filter=".f">F</a>
+                        <a href="{{ path('produit_rech',{'id':'g'}) }}" data-filter=".g">G</a>
+                        <a href="{{ path('produit_rech',{'id':'h'}) }}" data-filter=".h">H</a>
+                        <a href="{{ path('produit_rech',{'id':'i'}) }}" data-filter=".i">I</a>
+                        <a href="{{ path('produit_rech',{'id':'j'}) }}" data-filter=".j">J</a>
+                        <a href="{{ path('produit_rech',{'id':'k'}) }}" data-filter=".k">K</a>
+                        <a href="{{ path('produit_rech',{'id':'l'}) }}" data-filter=".l">L</a>
+                        <a href="{{ path('produit_rech',{'id':'m'}) }}" data-filter=".m">M</a>
+                        <a href="{{ path('produit_rech',{'id':'n'}) }}" data-filter=".n">N</a>
+                        <a href="{{ path('produit_rech',{'id':'o'}) }}" data-filter=".o">O</a>
+                        <a href="{{ path('produit_rech',{'id':'p'}) }}" data-filter=".p">P</a>
+                        <a href="{{ path('produit_rech',{'id':'q'}) }}" data-filter=".q">Q</a>
+                        <a href="{{ path('produit_rech',{'id':'r'}) }}" data-filter=".r">R</a>
+                        <a href="{{ path('produit_rech',{'id':'s'}) }}" data-filter=".s">S</a>
+                        <a href="{{ path('produit_rech',{'id':'t'}) }}" data-filter=".t">T</a>
+                        <a href="{{ path('produit_rech',{'id':'u'}) }}" data-filter=".u">U</a>
+                        <a href="{{ path('produit_rech',{'id':'v'}) }}" data-filter=".v">V</a>
+                        <a href="{{ path('produit_rech',{'id':'w'}) }}" data-filter=".w">W</a>
+                        <a href="{{ path('produit_rech',{'id':'x'}) }}" data-filter=".x">X</a>
+                        <a href="{{ path('produit_rech',{'id':'y'}) }}" data-filter=".y">Y</a>
+                        <a href="{{ path('produit_rech',{'id':'z'}) }}" data-filter=".z">Z</a>
+                    </div>
+                </div>
+            </div>
+            <div class="oneMusic-buy-now-area mb-100">
+                <div class="container">
+                    <div class="row">
+                    {% for produit in produits %}
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="single-album-area wow fadeInUp" data-wow-delay="100ms">
+                        <div class="album-thumb">
+                        <img src="{{asset('/img/'~produit.image)}}" height="300" width="300" alt="">
+                            <div class="album-price">
+                                <p>{{ produit.prix }}dt</p>
+                            </div>
+                        </div>
+                        <div class="album-info">
+                            <a href="{{ path('produit_show', { 'id': produit.id }) }}">
+                                <h5>{{ produit.nom }}</h5>
+                            </a>
+
+                            <p>Quantity: {{ produit.quantite }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block Body %}
+    <section class="breadcumb-area bg-img bg-overlay" style="background-image: url({{ asset('img/bg-img/breadcumb3.jpg') }});"></section>
+    <section class="login-area section-padding-100">
+        <div class="container">
+            <table class="table table-head-fixed text-nowrap">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date:</th>
+                    <th>Description</th>
+                    <th>Categorie</th>
+                    <th>img</th>
+                    <th>Watch</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for aud in audition %}
+                    <tr>
+                        <td>{{ aud.nom }}</td>
+                        <td>{{ aud.date|date("m/d/y") }}</td>
+                        <td>{{ aud.description }}</td>
+                        <td>{{ aud.categorie }}</td>
+                        <td>            <img src="{{ asset('uploads/photos/'~aud.photo) }}">           </td>
+                        <td><a href="{{ (aud.video) }}">Watch</a><br> </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}

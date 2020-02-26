@@ -1,0 +1,47 @@
+evenement:
+    resource: "@EvenementBundle/Resources/config/routing.yml"
+    prefix:   /
+
+publication:
+    resource: "@PublicationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+audition:
+    resource: "@AuditionBundle/Resources/config/routing.yml"
+    prefix:   /
+
+chat_conversation:
+    resource: "@ChatBundle/Controller/ConversationController.php"
+    type:     annotation
+
+chat_message:
+    resource: "@ChatBundle/Controller/MessageController.php"
+    type:     annotation
+
+chat:
+    resource: "@ChatBundle/Controller"
+    type:     annotation
+
+shop:
+    resource: "@ShopBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_message:
+    resource: "@FOSMessageBundle/Resources/config/routing.xml"
+    prefix: /fosmessage
+
+easy_admin_bundle:
+        resource: "@EasyAdminBundle/Controller/"
+        type: annotation
+        prefix: /easyadmin
